@@ -13,3 +13,41 @@
  *= require_tree .
  *= require_self
  */
+
+ .index-h1 {
+  padding-left: 18%;
+ }
+
+ .map-image {
+  position: fixed;
+  z-index: 0;
+ }
+
+ .show-main-body-container {
+  padding-top: 340px;
+  z-index: 1;
+ }
+
+ .flat-content {
+  height: 130px;
+  box-sizing: border-box !important;
+  margin-bottom: 20px;
+ }
+
+ .house-image {
+  height: 40%;
+ }
+
+ .info-holder {
+  height: 45%;
+ }
+
+ .search-input {
+  /* width: 50% !important; */
+  width: 200px !important;
+ }
+
+ .button-containers {
+  /* width: 22%; */
+  box-sizing: border-box;
+ }

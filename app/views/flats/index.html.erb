@@ -1,21 +1,37 @@
-<div class="main-body-container">
-  <h1 class="mt-4">All our flats (<%= @flats.length %>)</h1>
+<div class="header d-flex justify-content-between align-items-center p-3 ps-5 pe-5 bg-light w-100">
+  <a href="/flats" class="text-decoration-none text-dark"><h3>Simple Airbnb</h3></a>
+  <div class="button-containers d-flex">
+    <input type="text" class="search-input form-control me-2">
+    <button class="btn border border-2 border-success text-success font-weight-bold pt-2 pb-2 ps-3 pe-3 me-2">Search</button>
+    <%= link_to "Add Flat", new_flat_path, class: "btn border border-2 border-primary text-primary font-weight-bold pt-2 pb-2 ps-3 pe-3" %>
+  </div>
 
-  <div class="flats-container row col-10 p-3 justify-content-center">
-    <% @flats.each do |flat| %>
-      <div class="flat card col-3 m-3 row flex-column p-0">
-        <div class="info-holder ps-3 pt-3 pe-3 bg-light h-75">
-          <h3><%= flat.name %></h3>
-          <h6><%= flat.address %></h6>
-          <div class="details-holder d-flex mt-3">
-            <p class="number-of-guests me-3"><i class="fa-solid fa-user-group me-2"></i><%= flat.number_of_guests %></p>
-            <p class="price"><i class="fa-solid fa-yen-sign me-1"></i><%= flat.price_per_night %></p>
+</div>
+
+<div class="main-body-container">
+  <h1 class="index-h1 mt-4">All our flats (<%= @flats.length %>)</h1>
+  <div class="d-flex justify-content-center">
+    <div class="flats-container row col-10 p-3 justify-content-center">
+      <% @flats.each do |flat| %>
+        <div class="flat card col-3 m-3 row flex-column p-0">
+          <img src="<%= flat.image_url %>" alt="" class="house-image p-0">
+          <div class="info-holder ps-3 pt-3 pe-3 bg-light">
+            <h3><%= flat.name %></h3>
+            <h6><%= flat.address %></h6>
+            <div class="details-holder d-flex mt-3">
+              <p class="number-of-guests me-3"><i class="fa-solid fa-user-group me-2"></i><%= flat.number_of_guests %></p>
+              <p class="price"><i class="fa-solid fa-yen-sign me-1"></i><%= flat.price_per_night %></p>
+            </div>
+          </div>
+          <div class="more-info-div bg-body p-3">
+            <strong><%= link_to "More info", flat_path(flat), class: "text-decoration-none me-3" %></strong>
+            <strong><%= link_to "Edit", edit_flat_path(flat), class: "text-decoration-none me-3 text-warning" %></strong>
+            <strong><%= link_to "Remove", flat_path(flat), class: "text-decoration-none me-3 text-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this flat? This action is irreverislbe" } %></strong>
           </div>
         </div>
-        <div class="more-info-div bg-body p-3 h-25">
-          <strong><%= link_to "More info", flat_path(flat), class: "text-decoration-none" %></strong>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<%= javascript_include_tag 'filter', 'data-turbo-track': 'reload', defer: true %>
